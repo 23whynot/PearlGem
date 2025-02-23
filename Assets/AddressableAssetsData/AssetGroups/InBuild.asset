@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: InBuild
+  m_EditorClassIdentifier: 
+  m_GroupName: InBuild
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 561a99064694c8c4daffe2132e0b4447
+  m_SerializeEntries:
+  - m_GUID: 0b794a55326fa824e8833e926387cc56
+    m_Address: LoadingScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scenes
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66ee69c15f3d0cb4f83e7aff2482435a
+    m_Address: Prefabs
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameplayObjects
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
+    m_Address: GameMode1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scenes
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abe82c75aef6edc4f9792b519944a02e
+    m_Address: GameHub
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scenes
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6948da24db3a6049aaaafd0ab5360ea
+    m_Address: CurtainCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 855871aedaab6df4fb74a96ead70d577, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4b7be4693818548438da51e26a54c033, type: 2}
+    - {fileID: 11400000, guid: 962718d0136743e40a8c6cf5d8560a73, type: 2}

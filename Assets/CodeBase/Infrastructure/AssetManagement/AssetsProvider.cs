@@ -28,10 +28,8 @@ namespace CodeBase.Infrastructure.AssetManagement
             return handle.Result as TAsset;
         }
 
-        public async UniTask<TAsset> Load<TAsset>(AssetReference assetReference) where TAsset : class
-        {
-            return await Load<TAsset>(assetReference.AssetGUID);
-        }
+        public async UniTask<TAsset> Load<TAsset>(AssetReference assetReference) where TAsset : class => 
+            await Load<TAsset>(assetReference.AssetGUID);
 
         public async UniTask<List<string>> GetAssetsListByLabel<TAsset>(string label) => 
             await GetAssetsListByLabel(label, typeof(TAsset));

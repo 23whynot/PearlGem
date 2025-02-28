@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Gameplay.Balls.Sphere;
+using CodeBase.Gameplay.Factory;
 using CodeBase.Gameplay.Services.RendererMaterialService;
 using CodeBase.Gameplay.Zone;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -12,7 +14,6 @@ namespace CodeBase.Gameplay.Sphere
 {
     public class SphereGenerator : MonoBehaviour, IColorOfZoneProvider, ICoroutineRunner
     {
-        [SerializeField] private SphereBall ballPrefab;
         [SerializeField] private Transform nonRotationalParent;
         [SerializeField] private Material material;
 
@@ -27,28 +28,42 @@ namespace CodeBase.Gameplay.Sphere
         private const float NoiseScale = 3f;
         private const float BorderWidth = 0.4f;
         private static readonly float GoldenAngle = Mathf.PI * (1 + Mathf.Sqrt(5));
-
-
+        
+        private SphereBall _sphereBall;
+        
         private IMaterialService _materialService;
         private DiContainer _diContainer;
         private List<ColorZone> _activeZones = new List<ColorZone>();
+        private IBallFactory _factory;
 
         [Inject]
-        public void Construct(IMaterialService materialService, DiContainer diContainer)
+        public void Construct(IMaterialService materialService, DiContainer diContainer, IBallFactory factory)
         {
             _materialService = materialService;
             _diContainer = diContainer;
+            _factory = factory;
         }
 
-        private void Awake() => _materialService.Init(material, layerCount);
-        
+        private async void Awake()
+        {
+            await InitializeBall();
+            _materialService.Init(material, layerCount);
+        }
+
         private void Start() => GenerateLayers();
-        
+
         public List<Color> GetColorsOfZone() => zoneColors;
-        
+
         public int GetCountZone() => zoneColors.Count * layerCount;
-        
+
         public int GetCountActiveZone() => _activeZones.Count;
+
+        private async UniTask InitializeBall()
+        {
+            GameObject ballPrefab = await _factory.GetSphereBall();
+            
+            _sphereBall = ballPrefab.GetComponent<SphereBall>();
+        }
 
         private void GenerateLayers()
         {
@@ -109,7 +124,7 @@ namespace CodeBase.Gameplay.Sphere
         private void InstantiateAndInitializeBall(Vector3 position, ColorZone zone)
         {
             SphereBall ballInstance = _diContainer.InstantiatePrefabForComponent<SphereBall>(
-                ballPrefab, position, Quaternion.identity, transform);
+                _sphereBall, position, Quaternion.identity, transform);
 
             ballInstance.Init(zone);
             zone.RegisterBall(ballInstance);

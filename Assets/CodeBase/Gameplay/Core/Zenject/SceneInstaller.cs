@@ -49,7 +49,7 @@ namespace CodeBase.Gameplay.Core.Zenject
             Container.BindInterfacesAndSelfTo<HudInputProvider>().AsSingle();
 
         private void BindSphereFactory() => 
-            Container.Bind<ISphereFactory>().To<SphereFactory>().AsSingle();
+            Container.Bind<IBallFactory>().To<BallFactory>().AsSingle();
 
         private void BindMaterialService() => 
             Container.Bind<IMaterialService>().To<MaterialService>().AsSingle();

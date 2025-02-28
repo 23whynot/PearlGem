@@ -2,6 +2,7 @@ using CodeBase.Gameplay.Balls.Player;
 using CodeBase.Gameplay.Controllers.LevelEnd;
 using CodeBase.Gameplay.Factory;
 using CodeBase.Infrastructure.Services.Input;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -25,25 +26,25 @@ namespace CodeBase.Gameplay.FirePoint
         private float _horizontalAngleOffset;
         private float _verticalAngleOffset;
 
-        private ISphereFactory _sphereFactory;
+        private IBallFactory _ballFactory;
         private IInputService _inputService;
         private IBallCountController _ballCountController;
         private ILevelEndController _levelEndController;
 
         [Inject]
-        public void Construct(ISphereFactory sphereFactory, IInputService inputService,
+        public void Construct(IBallFactory ballFactory, IInputService inputService,
             IBallCountController ballCountController, ILevelEndController levelEndController)
         {
             _levelEndController = levelEndController;
             _ballCountController = ballCountController;
-            _sphereFactory = sphereFactory;
+            _ballFactory = ballFactory;
             _inputService = inputService;
         }
 
-        private void Awake()
+        private async void Awake()
         {
+            await _ballFactory.InitializeAsync();
             _ballCountController.InitBallCount(bonusBallCount);
-            _sphereFactory.Init();
         }
 
         private void Start()
@@ -110,8 +111,10 @@ namespace CodeBase.Gameplay.FirePoint
             projectileTrajectory.DrawTrajectory(_horizontalAngleOffset, _verticalAngleOffset);
         }
 
-        private void StopInput() => _inputAllowed = false;
+        private void StopInput() => 
+            _inputAllowed = false;
 
-        private void SpawnBall() => _currentBall = _sphereFactory.CreatePlayerBall(spawnPoint);
+        private void SpawnBall() => 
+            _currentBall = _ballFactory.CreatePlayerBall(spawnPoint);
     }
 }

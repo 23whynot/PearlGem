@@ -89,6 +89,7 @@ MonoBehaviour:
     - default
     - Scenes
     - GameplayObjects
+    - GameplayState
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: ebea40399f24a6f44a892a804d3d9bcd, type: 2}

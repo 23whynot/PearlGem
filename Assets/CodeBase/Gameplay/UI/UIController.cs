@@ -10,7 +10,7 @@ namespace CodeBase.Gameplay.UI
 
         private void Start()
         {
-            ShowHudScreen();
+            //  ShowHudScreen();
         }
 
         private void ShowHudScreen()

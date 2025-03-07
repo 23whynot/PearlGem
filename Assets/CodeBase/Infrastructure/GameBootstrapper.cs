@@ -26,8 +26,8 @@ namespace CodeBase.Infrastructure
             _gameStateMachine.RegisterState(_statesFactory.Create<GameHubState>());
             _gameStateMachine.RegisterState(_statesFactory.Create<GameplayState>()); 
             
-            _gameStateMachine.Enter<GameBootstrapState>();  //TODO почитать что такое Форгет
-                                                            // TODO почитать что такуое Алокация
+            _gameStateMachine.Enter<GameBootstrapState>();
+                                                            
             
             DontDestroyOnLoad(gameObject);
         }

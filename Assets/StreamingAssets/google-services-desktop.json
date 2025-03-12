@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "364150341946",
+    "project_id": "spherequest-93d92",
+    "storage_bucket": "spherequest-93d92.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364150341946:android:8b2f9164d222013e6e1003",
+        "android_client_info": {
+          "package_name": "com.WhynotCompany.SphereQuest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCShjtzYYmSSKsVK7JCwwxzN30dxEjUdr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
